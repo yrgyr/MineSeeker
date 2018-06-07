@@ -12,8 +12,8 @@ import static com.example.guoyiran.mineseeker.R.id.gameBorad;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int rowNum = 4;
-    private int colNum = 6;
+    private int rowNum = 6;
+    private int colNum = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +31,19 @@ public class MainActivity extends AppCompatActivity {
         for(int row = 0;row < rowNum;row++){
 
             TableRow newRow = new TableRow(this);
+            newRow.setLayoutParams(new TableLayout.LayoutParams(
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    TableLayout.LayoutParams.MATCH_PARENT,
+                    1.0f));
             gameBoard.addView(newRow);
+
             for(int col = 0; col < colNum; col++){
 
                 Button newButton = new Button(this);
+                newButton.setLayoutParams(new TableRow.LayoutParams(
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        TableRow.LayoutParams.MATCH_PARENT,
+                        1.0f));
                 newRow.addView(newButton);
             }
 
