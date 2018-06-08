@@ -22,7 +22,7 @@ public class WelcomeScreen extends AppCompatActivity {
         skipBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(WelcomeScreen.this, MainActivity.class);
+                Intent intent = new Intent(WelcomeScreen.this, MainMenu.class);
                 startActivity(intent);
             }
         });

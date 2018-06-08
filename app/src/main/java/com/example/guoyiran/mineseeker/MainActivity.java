@@ -10,7 +10,7 @@ import android.widget.TableRow;
 
 import static com.example.guoyiran.mineseeker.R.id.gameBorad;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     private int rowNum = 6;
     private int colNum = 15;
