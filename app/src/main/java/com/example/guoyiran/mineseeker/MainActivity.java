@@ -12,8 +12,8 @@ import static com.example.guoyiran.mineseeker.R.id.gameBorad;
 
 public class MainActivity extends Activity {
 
-    private int rowNum = 6;
-    private int colNum = 15;
+    int rowNum = 6;
+    int colNum = 15;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
