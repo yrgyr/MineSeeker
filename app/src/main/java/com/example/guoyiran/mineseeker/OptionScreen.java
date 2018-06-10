@@ -87,8 +87,13 @@ public class OptionScreen extends Activity {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(OptionScreen.this,"you selected " + mine + " Mines",Toast.LENGTH_LONG).show();
+                    optionInfo.setMineNumber(mine);
                 }
             });
+
+            if(mine == optionInfo.getMineNumber()){
+                littleMine.setChecked(true);
+            }
 
         }
     }
