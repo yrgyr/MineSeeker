@@ -8,12 +8,13 @@ import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import com.example.guoyiran.mineseeker.model.OptionInfo;
+
 import static com.example.guoyiran.mineseeker.R.id.gameBorad;
 
 public class MainActivity extends Activity {
 
-    int rowNum = 6;
-    int colNum = 15;
+    private OptionInfo optionInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +22,18 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        createGameBoard();
+        optionInfo = OptionInfo.getOptionInfo();
+        int rowNum = optionInfo.getRowNumber();
+        int colNum = optionInfo.getColNumber();
+
+        //use later
+        int mineNum = optionInfo.getMineNumber();
+
+
+        createGameBoard(rowNum,colNum);
     }
 
-    private void createGameBoard() {
+    private void createGameBoard(int rowNum,int colNum) {
 
         TableLayout gameBoard = (TableLayout) findViewById(gameBorad);
 
