@@ -3,6 +3,7 @@ package com.example.guoyiran.mineseeker;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -11,7 +12,12 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.Toast;
 
+import com.example.guoyiran.mineseeker.model.OptionInfo;
+
 public class OptionScreen extends Activity {
+
+
+    private OptionInfo optionInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,9 @@ public class OptionScreen extends Activity {
 
 //        setPopUpWindow();
 //        android:theme="@style/AppTheme.PopUpWindow"
+
+        optionInfo = OptionInfo.getOptionInfo();
+
 
         setRadioBtn();
     }
@@ -47,15 +56,24 @@ public class OptionScreen extends Activity {
 
             RadioButton littleBtn= new RadioButton(this);
             littleBtn.setText(row + " row by " + col + " col ");
-            boardSize.addView(littleBtn);
+
 
             littleBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(OptionScreen.this,"you selected " + row + " rows, " + col + " columns ",Toast.LENGTH_LONG).show();
-                    saveBoardSize(row,col);
+
+                    optionInfo.setRowNumber(row);
+                    optionInfo.setColNumber(col);
+
+//                    saveBoardSize(optionInfo);
                 }
             });
+            boardSize.addView(littleBtn);
+
+            if(row == optionInfo.getRowNumber()&& col == optionInfo.getColNumber()){
+                littleBtn.setChecked(true);
+            }
 
         }
 
@@ -69,24 +87,34 @@ public class OptionScreen extends Activity {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(OptionScreen.this,"you selected " + mine + " Mines",Toast.LENGTH_LONG).show();
+                    optionInfo.setMineNumber(mine);
                 }
             });
+
+            if(mine == optionInfo.getMineNumber()){
+                littleMine.setChecked(true);
+            }
 
         }
     }
 
-    private void saveBoardSize(int row, int col) {
-
-        SharedPreferences share = this.getSharedPreferences("share",MODE_PRIVATE);
-        SharedPreferences.Editor editor = share.edit();
-        editor.putInt("board size",0);
-        editor.apply();
-    }
-
-    static public int getBoardSize(Context context){
-        return 0;
-
-    }
+//    private void saveBoardSize(OptionInfo Info) {
+//
+//        SharedPreferences share = this.getSharedPreferences("share",MODE_PRIVATE);
+//        SharedPreferences.Editor editor = share.edit();
+//
+//        editor.putInt("row number",Info.getRowNumber());
+//        editor.putInt("col number",Info.getColNumber());
+//
+//        editor.apply();
+//    }
+//
+//    static public int getBoardSize(Context context){
+//        SharedPreferences share = context.getSharedPreferences("share",MODE_PRIVATE);
+//
+//        return 0;
+//
+//    }
 
 
 
