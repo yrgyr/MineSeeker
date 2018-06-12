@@ -16,23 +16,25 @@ public class GameLogic {
     private int rowNum;
     private int colNum;
     private int mineNum;
-    private Button[][] buttons;
 
     //why i can not initialize it globally
     private int[][] printed;
+    private int[][] cellNumList;
 
-    public GameLogic(){
-        setRandomMine();
 
+    public int[][] getCellNum() {
+        return cellNumList;
     }
-    public GameLogic(int rows,int cols,int mines,Button[][] buttonList){
+
+    public int[][] getPrinted() {
+        return printed;
+    }
+
+    public GameLogic(int rows,int cols,int mines){
 
         rowNum = rows;
         colNum = cols;
         mineNum = mines;
-        buttons = buttonList;
-
-
         setRandomMine();
         setCellInfo();
 
@@ -42,8 +44,6 @@ public class GameLogic {
     private void setRandomMine() {
 
         printed = new int[rowNum][colNum];
-
-
         for(int mine = 0;mine < mineNum;mine++){
 
             int randRow = ThreadLocalRandom.current().nextInt(0,rowNum);
@@ -54,41 +54,19 @@ public class GameLogic {
                 randRow = ThreadLocalRandom.current().nextInt(0,rowNum);
                 randCol = ThreadLocalRandom.current().nextInt(0,colNum);
             }
-
-            final Button littleBtn = buttons[randRow][randCol];
-//            littleBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                }
-//            });
-
-            littleBtn.setBackgroundResource(R.mipmap.ic_launcher);
             printed[randRow][randCol] = 1;
         }
     }
     private void setCellInfo() {
-
-
         //for every cell
+        cellNumList = new int[rowNum][colNum];
         for(int row = 0; row < rowNum; row++){
-
             for (int col = 0;col<colNum; col++){
+                cellNumList[row][col] = scanItsRowAndCol(row,col);
 
-                final int numberInCell = scanItsRowAndCol(row,col);
-
-                final Button littleBtn = buttons[row][col];
-                littleBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        littleBtn.setText(numberInCell+"");
-
-                    }
-                });
             }
 
         }
-
     }
     private int scanItsRowAndCol(int currentRow,int currentCol) {
 
