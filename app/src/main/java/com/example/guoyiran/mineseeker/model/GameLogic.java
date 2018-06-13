@@ -68,10 +68,11 @@ public class GameLogic {
 
         }
     }
+
+
     private int scanItsRowAndCol(int currentRow,int currentCol) {
 
         int countMine = 0;
-
         for (int col = 0; col < colNum;col++){
             if (printed[currentRow][col] == 1){
                 countMine++;
@@ -90,4 +91,10 @@ public class GameLogic {
     }
 
 
+    private void mineFound(Button btn){
+
+
+
+
+    }
 }

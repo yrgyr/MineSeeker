@@ -25,19 +25,12 @@ public class MainActivity extends Activity {
     private int mineNum = optionInfo.getMineNumber();
     private Button[][] buttonTable = new Button[rowNum][colNum];
 
-
     private int [][] numberTable;
     private int [][] checkTable;
-    private boolean [][] visitTable;
+    private boolean [][] visitTable = new boolean[rowNum][colNum];
 
     private int countScan = 0;
-
     private int found = 0;
-    private GameLogic newGame;
-
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +51,6 @@ public class MainActivity extends Activity {
         checkTable = newGame.getPrinted();
 
 
-        visitTable = new boolean[rowNum][colNum];
 
         createGameBoard(rowNum,colNum);
         setBtnOnclick();
@@ -86,7 +78,6 @@ public class MainActivity extends Activity {
             gameBoard.addView(newRow);
             for(int col = 0; col < colNum; col++){
 
-
                 final Button newButton = new Button(this);
                 // set layout
                 newButton.setLayoutParams(new TableRow.LayoutParams(
@@ -97,13 +88,8 @@ public class MainActivity extends Activity {
                 buttonTable[row][col] = newButton;
                 newRow.addView(newButton);
             }
-
         }
-
-
-
     }
-
     private void setBtnOnclick() {
 
 
@@ -112,7 +98,7 @@ public class MainActivity extends Activity {
 
                 final Button littleBtn = buttonTable[row][col];
                 final int num = numberTable[row][col];
-                final boolean VISITED = visitTable[row][col];
+
                 // if the cell has mine
                 if(checkTable[row][col] == 1){
 
@@ -122,34 +108,23 @@ public class MainActivity extends Activity {
                     littleBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            littleBtn.setBackgroundResource(R.mipmap.ic_launcher);
+
                             found++;
+                            littleBtn.setBackgroundResource(R.mipmap.ic_launcher);
+
+
+                            updateNumberTable(currentRow,currentCol);
+
+
                             updateTextView();
-                            if(VISITED == false){
-
-//                                onclickDisplayNumOnCell(currentRow,currentCol);
-                                visitTable[currentRow][currentCol] = true;
-
-                            }
+                            onclickDisplayNumOnCell(currentRow,currentCol);
 
                         }
                     });
-
                 }
                 else{ //if is a normal cell
 
-                    if (VISITED == false){
-                        littleBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                littleBtn.setText(num+ "");
-                                countScan++;
-                                updateScanCountTV();
-                            }
-                        });
-                        visitTable[row][col] = true;
-                    }
-
+                    onclickDisplayNumOnCell(row,col);
                 }
 
             }
@@ -157,21 +132,63 @@ public class MainActivity extends Activity {
 
     }
 
-//    private void onclickDisplayNumOnCell(int row,int col){
-//
-//            final int num = numberTable[row][col];
-//            final Button clickedBtn = buttonTable[row][col];
-//
-//
-//            clickedBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    clickedBtn.setText(num+ "");
-//                    countScan++;
-//                    updateScanCountTV();
-//                }
-//            });
-//    }
+    private void updateNumberTable(int row, int col) {
+
+        for(int theCol = 0;theCol< colNum; theCol++){
+
+            numberTable[row][theCol]--;
+
+            if(visitTable[row][theCol] == true){
+                int newNum = numberTable[row][theCol];
+                Button updatedButtons = buttonTable[row][theCol];
+                updatedButtons.setText(newNum+"");
+            }
+        }
+
+        for(int theRow = 0;theRow<rowNum;theRow++){
+
+            numberTable[theRow][col]--;
+
+            if(visitTable[theRow][col] == true){
+
+                int newNum = numberTable[theRow][col];
+                Button updatedButtons = buttonTable[theRow][col];
+                updatedButtons.setText(newNum+"");
+            }
+        }
+        numberTable[row][col]++;
+    }
+
+
+
+    private void onclickDisplayNumOnCell(int row,int col){
+
+        final int thisRow = row;
+        final int thisCol = col;
+
+        final Button clickedBtn = buttonTable[row][col];
+        clickedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                boolean visited = visitTable[thisRow][thisCol];
+                if(visited == false){
+                    int num = numberTable[thisRow][thisCol];
+                    clickedBtn.setText(num+ "");
+                    countScan++;
+                    updateScanCountTV();
+//                    clickedBtn.setEnabled(false);
+                    visitTable[thisRow][thisCol] = true;
+                }
+
+            }
+        });
+
+    }
+
+
+
     private void updateTextView() {
         TextView mineInfo = (TextView) findViewById(R.id.mineInfo);
         mineInfo.setText("Found "+ found+ " of" + mineNum + " mines");
