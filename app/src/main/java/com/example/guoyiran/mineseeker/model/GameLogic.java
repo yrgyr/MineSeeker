@@ -37,10 +37,7 @@ public class GameLogic {
         mineNum = mines;
         setRandomMine();
         setCellInfo();
-
-
     }
-
     private void setRandomMine() {
 
         printed = new int[rowNum][colNum];
@@ -68,26 +65,18 @@ public class GameLogic {
 
         }
     }
-
-
     private int scanItsRowAndCol(int currentRow,int currentCol) {
 
         int countMine = 0;
         for (int col = 0; col < colNum;col++){
             if (printed[currentRow][col] == 1){
-                countMine++;
-            }
-        }
+                countMine++; } }
         for (int row = 0; row < rowNum;row++){
             if (printed[row][currentCol] == 1){
-                countMine++;
-            }
-        }
+                countMine++; } }
         if(printed[currentRow][currentCol] == 1){
-            countMine--;
-        }
+            countMine--; }
         return countMine;
-
     }
 
 
