@@ -62,9 +62,7 @@ public class OptionScreen extends AppCompatActivity {
             final int col = colNum[i];
 
             RadioButton sizeBtn= new RadioButton(this);
-            sizeBtn.setText(row + " row by " + col + " col ");
-
-
+            sizeBtn.setText(getString(R.string.row_num_col_num,row,col));
             sizeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -83,12 +81,11 @@ public class OptionScreen extends AppCompatActivity {
             }
 
         }
-
         for (int i = 0; i < mineArray.length; i++){
 
             final int mine = mineArray[i];
             RadioButton littleMine = new RadioButton(this);
-            littleMine.setText(mine + " mines ");
+            littleMine.setText(getString(R.string.num_mines,mine));
             littleMine.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -103,9 +100,6 @@ public class OptionScreen extends AppCompatActivity {
                 littleMine.setChecked(true);
 
             }
-
-
-
         }
 
     }
