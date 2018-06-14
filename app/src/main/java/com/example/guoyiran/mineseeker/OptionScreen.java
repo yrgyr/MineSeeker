@@ -68,8 +68,6 @@ public class OptionScreen extends AppCompatActivity {
             sizeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Toast.makeText(OptionScreen.this,"you selected " + row + " rows, " + col + " columns ",Toast.LENGTH_LONG)
-//                            .show();
 
                     optionInfo.setRowNumber(row);
                     optionInfo.setColNumber(col);
@@ -79,8 +77,8 @@ public class OptionScreen extends AppCompatActivity {
             boardSize.addView(sizeBtn);
 
             if(row == getRowNumberSaved(this)&& col == getColNumberSaved(this)){
-                optionInfo.setRowNumber(row);
-                optionInfo.setColNumber(col);
+//                optionInfo.setRowNumber(row);
+//                optionInfo.setColNumber(col);
                 sizeBtn.setChecked(true);
             }
 
@@ -94,7 +92,6 @@ public class OptionScreen extends AppCompatActivity {
             littleMine.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Toast.makeText(OptionScreen.this,"you selected " + mine + " Mines",Toast.LENGTH_LONG).show();
                     optionInfo.setMineNumber(mine);
                     saveMine(optionInfo);
                 }
@@ -102,7 +99,7 @@ public class OptionScreen extends AppCompatActivity {
 
             mineNum.addView(littleMine);
             if(mine == getMineNumberSaved(this)){
-                optionInfo.setMineNumber(mine);
+//                optionInfo.setMineNumber(mine);
                 littleMine.setChecked(true);
 
             }

@@ -17,17 +17,6 @@ public class MainMenu extends AppCompatActivity {
         optionBtnOnclick();
     }
 
-    private void optionBtnOnclick() {
-        Button optionBtn = (Button) findViewById(R.id.optionBtn);
-        optionBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainMenu.this,OptionScreen.class);
-                startActivity(intent);
-            }
-        });
-
-    }
 
     private void playGameBtnOnclick() {
         Button playGameBtn = (Button) findViewById(R.id.playGameBtn);
@@ -38,5 +27,16 @@ public class MainMenu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+    private void optionBtnOnclick() {
+        Button optionBtn = (Button) findViewById(R.id.optionBtn);
+        optionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this,OptionScreen.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

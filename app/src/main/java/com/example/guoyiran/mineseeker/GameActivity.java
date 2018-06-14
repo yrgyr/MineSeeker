@@ -55,6 +55,11 @@ public class GameActivity extends AppCompatActivity {
         rowNum = OptionScreen.getRowNumberSaved(GameActivity.this);
         colNum = OptionScreen.getColNumberSaved(GameActivity.this);
         mineNum = OptionScreen.getMineNumberSaved(GameActivity.this);
+
+//        rowNum = optionInfo.getRowNumber();
+//        colNum = optionInfo.getColNumber();
+//        mineNum = optionInfo.getMineNumber();
+
         GameLogic newGame = new GameLogic(rowNum,colNum,mineNum);
 
 
@@ -111,15 +116,6 @@ public class GameActivity extends AppCompatActivity {
                 final Button littleBtn = buttonTable[row][col];
                 final int num = numberTable[row][col];
 
-//                int width = littleBtn.getWidth();
-//                littleBtn.setMinWidth(width);
-//                littleBtn.setMaxWidth(width);
-//
-//                int height = littleBtn.getHeight();
-//                littleBtn.setMinHeight(height);
-//                littleBtn.setMaxHeight(height);
-
-                // if the cell has mine
                 if(checkTable[row][col] == 1){
 
                     final int currentRow = row;
@@ -131,7 +127,7 @@ public class GameActivity extends AppCompatActivity {
                             lockButtonSizes();
                             int newWidth = littleBtn.getWidth();
                             int newHeight = littleBtn.getHeight();
-                            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.winner_image);
+                            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);
                             Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
                             Resources resource = getResources();
                             littleBtn.setBackground(new BitmapDrawable(resource, scaledBitmap));
