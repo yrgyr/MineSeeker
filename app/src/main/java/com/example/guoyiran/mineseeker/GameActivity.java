@@ -1,10 +1,10 @@
 package com.example.guoyiran.mineseeker;
 
-import android.app.Activity;
-import android.app.FragmentManager;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.guoyiran.mineseeker.model.GameLogic;
@@ -20,18 +20,27 @@ import android.widget.TextView;
 
 import static com.example.guoyiran.mineseeker.R.id.gameBorad;
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
 
     OptionInfo optionInfo = OptionInfo.getOptionInfo();
-    private int rowNum = optionInfo.getRowNumber();
-    private int colNum = optionInfo.getColNumber();
-    private int mineNum = optionInfo.getMineNumber();
-    private Button[][] buttonTable = new Button[rowNum][colNum];
+
+
+//    private int rowNum = optionInfo.getRowNumber();
+//    private int colNum = optionInfo.getColNumber();
+//    private int mineNum = optionInfo.getMineNumber();
+
+
+
+    private int rowNum;
+    private int colNum;
+    private int mineNum;
+
+    private Button[][] buttonTable;
 
     private int [][] numberTable;
     private int [][] checkTable;
-    private boolean [][] visitTable = new boolean[rowNum][colNum];
+    private boolean [][] visitTable;
 
     private int countScan = 0;
     private int found = 0;
@@ -43,7 +52,17 @@ public class MainActivity extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
 
+        rowNum = OptionScreen.getRowNumberSaved(GameActivity.this);
+        colNum = OptionScreen.getColNumberSaved(GameActivity.this);
+        mineNum = OptionScreen.getMineNumberSaved(GameActivity.this);
+
+//        rowNum = optionInfo.getRowNumber();
+//        colNum = optionInfo.getColNumber();
+//        mineNum = optionInfo.getMineNumber();
+
         GameLogic newGame = new GameLogic(rowNum,colNum,mineNum);
+
+
 
         // number on each cell
         numberTable = new int[rowNum][colNum];
@@ -52,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         // 1 or 0 , cell with mine is 1.
         checkTable = new int[rowNum][colNum];
         checkTable = newGame.getPrinted();
+
+        buttonTable = new Button[rowNum][colNum];
+        visitTable = new boolean[rowNum][colNum];
+
 
         createGameBoard(rowNum,colNum);
         setBtnOnclick();
@@ -93,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
                 final Button littleBtn = buttonTable[row][col];
                 final int num = numberTable[row][col];
 
-                // if the cell has mine
                 if(checkTable[row][col] == 1){
 
                     final int currentRow = row;
@@ -102,10 +124,18 @@ public class MainActivity extends AppCompatActivity {
                     littleBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            lockButtonSizes();
+                            int newWidth = littleBtn.getWidth();
+                            int newHeight = littleBtn.getHeight();
+                            Bitmap originalBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round);
+                            Bitmap scaledBitmap = Bitmap.createScaledBitmap(originalBitmap, newWidth, newHeight, true);
+                            Resources resource = getResources();
+                            littleBtn.setBackground(new BitmapDrawable(resource, scaledBitmap));
+
                             found++;
                             winnerChecking();
                             updateTextView();
-                            littleBtn.setBackgroundResource(R.mipmap.ic_launcher);
+//                            littleBtn.setBackgroundResource(R.mipmap.ic_launcher_round);
                             updateNumberTable(currentRow,currentCol);
                             onclickDisplayNumOnCell(currentRow,currentCol);
                         }
@@ -118,6 +148,22 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    private void lockButtonSizes() {
+        for (int row = 0; row < rowNum; row++) {
+            for (int col = 0; col < colNum; col++) {
+                Button button = buttonTable[row][col];
+
+                int width = button.getWidth();
+                button.setMinWidth(width);
+                button.setMaxWidth(width);
+
+                int height = button.getHeight();
+                button.setMinHeight(height);
+                button.setMaxHeight(height);
+            }
+        }
     }
 
 
@@ -188,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateTextView() {
         TextView mineInfo = (TextView) findViewById(R.id.mineInfo);
-        mineInfo.setText("Found "+ found+ " of" + mineNum + " mines");
+        mineInfo.setText("Found "+ found+ " of " + mineNum + " mines");
     }
     private void updateScanCountTV(){
 

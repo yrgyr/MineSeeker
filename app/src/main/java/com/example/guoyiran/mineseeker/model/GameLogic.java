@@ -1,12 +1,7 @@
 package com.example.guoyiran.mineseeker.model;
 
-import android.view.View;
 import android.widget.Button;
 
-import com.example.guoyiran.mineseeker.MainActivity;
-import com.example.guoyiran.mineseeker.R;
-
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GameLogic {

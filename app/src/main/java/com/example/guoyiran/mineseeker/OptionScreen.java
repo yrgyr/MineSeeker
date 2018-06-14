@@ -31,6 +31,13 @@ public class OptionScreen extends AppCompatActivity {
         optionInfo = OptionInfo.getOptionInfo();
 
         setRadioBtn();
+
+
+        int savedRow = getRowNumberSaved(this);
+        int savedCol = getColNumberSaved(this);
+        int saveMine = getMineNumberSaved(this);
+        Toast.makeText(this,"saved "+savedRow + "row, " + savedCol + " col" + ",and "+ saveMine + " mines",Toast.LENGTH_SHORT)
+                .show();
     }
 
 
@@ -54,25 +61,25 @@ public class OptionScreen extends AppCompatActivity {
             final int row = rowNum[i];
             final int col = colNum[i];
 
-            RadioButton littleBtn= new RadioButton(this);
-            littleBtn.setText(row + " row by " + col + " col ");
+            RadioButton sizeBtn= new RadioButton(this);
+            sizeBtn.setText(row + " row by " + col + " col ");
 
 
-            littleBtn.setOnClickListener(new View.OnClickListener() {
+            sizeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(OptionScreen.this,"you selected " + row + " rows, " + col + " columns ",Toast.LENGTH_LONG).show();
 
                     optionInfo.setRowNumber(row);
                     optionInfo.setColNumber(col);
-
-//                    saveBoardSize(optionInfo);
+                    saveSize(optionInfo);
                 }
             });
-            boardSize.addView(littleBtn);
+            boardSize.addView(sizeBtn);
 
-            if(row == optionInfo.getRowNumber()&& col == optionInfo.getColNumber()){
-                littleBtn.setChecked(true);
+            if(row == getRowNumberSaved(this)&& col == getColNumberSaved(this)){
+//                optionInfo.setRowNumber(row);
+//                optionInfo.setColNumber(col);
+                sizeBtn.setChecked(true);
             }
 
         }
@@ -82,41 +89,72 @@ public class OptionScreen extends AppCompatActivity {
             final int mine = mineArray[i];
             RadioButton littleMine = new RadioButton(this);
             littleMine.setText(mine + " mines ");
-            mineNum.addView(littleMine);
             littleMine.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(OptionScreen.this,"you selected " + mine + " Mines",Toast.LENGTH_LONG).show();
                     optionInfo.setMineNumber(mine);
+                    saveMine(optionInfo);
                 }
             });
 
-            if(mine == optionInfo.getMineNumber()){
+            mineNum.addView(littleMine);
+            if(mine == getMineNumberSaved(this)){
+//                optionInfo.setMineNumber(mine);
                 littleMine.setChecked(true);
+
             }
 
+
+
         }
+
     }
 
-//    private void saveBoardSize(OptionInfo Info) {
-//
-//        SharedPreferences share = this.getSharedPreferences("share",MODE_PRIVATE);
-//        SharedPreferences.Editor editor = share.edit();
-//
-//        editor.putInt("row number",Info.getRowNumber());
-//        editor.putInt("col number",Info.getColNumber());
-//
-//        editor.apply();
-//    }
-//
-//    static public int getBoardSize(Context context){
-//        SharedPreferences share = context.getSharedPreferences("share",MODE_PRIVATE);
-//
-//        return 0;
-//
-//    }
+    // =========================Methods for saving values ==========================================
+   private void saveSize(OptionInfo Info) {
+
+        SharedPreferences sizeShare = this.getSharedPreferences("sizeShare",MODE_PRIVATE);
+        SharedPreferences.Editor editor = sizeShare.edit();
+
+        editor.putInt("row number",Info.getRowNumber());
+        editor.putInt("col number",Info.getColNumber());
+        editor.apply();
+    }
+
+    private void saveMine(OptionInfo Info) {
+
+        SharedPreferences mineShare = this.getSharedPreferences("mineShare",MODE_PRIVATE);
+        SharedPreferences.Editor editor = mineShare.edit();
+
+        editor.putInt("mine number",Info.getMineNumber());
+        editor.apply();
+    }
+
+    // =========================== Methods for getting saved values ======================================
+
+    static public int getRowNumberSaved(Context context){
+        SharedPreferences share = context.getSharedPreferences("sizeShare",MODE_PRIVATE);
+
+        int default_row = context.getResources().getInteger(R.integer.default_row);
+        return share.getInt("row number",default_row);
+
+    }
+
+    static public int getColNumberSaved(Context context){
+        SharedPreferences share = context.getSharedPreferences("sizeShare",MODE_PRIVATE);
+
+        int default_col = context.getResources().getInteger(R.integer.default_col);
+        return share.getInt("col number",default_col);
+
+    }
 
 
+    static public int getMineNumberSaved(Context context){
+        SharedPreferences share = context.getSharedPreferences("mineShare",MODE_PRIVATE);
 
+        int default_mine = context.getResources().getInteger(R.integer.default_mine);
+        return share.getInt("mine number",default_mine);
+
+    }
 
 }
