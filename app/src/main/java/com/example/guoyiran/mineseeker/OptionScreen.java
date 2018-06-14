@@ -110,10 +110,10 @@ public class OptionScreen extends AppCompatActivity {
 
 
         }
-//        saveBoardSize(optionInfo);
 
     }
 
+    // =========================Methods for saving values ==========================================
    private void saveSize(OptionInfo Info) {
 
         SharedPreferences sizeShare = this.getSharedPreferences("sizeShare",MODE_PRIVATE);
@@ -133,19 +133,21 @@ public class OptionScreen extends AppCompatActivity {
         editor.apply();
     }
 
+    // =========================== Methods for getting saved values ======================================
 
     static public int getRowNumberSaved(Context context){
         SharedPreferences share = context.getSharedPreferences("sizeShare",MODE_PRIVATE);
 
-        return share.getInt("row number",0);
+        int default_row = context.getResources().getInteger(R.integer.default_row);
+        return share.getInt("row number",default_row);
 
     }
-
 
     static public int getColNumberSaved(Context context){
         SharedPreferences share = context.getSharedPreferences("sizeShare",MODE_PRIVATE);
 
-        return share.getInt("col number",0);
+        int default_col = context.getResources().getInteger(R.integer.default_col);
+        return share.getInt("col number",default_col);
 
     }
 
@@ -153,7 +155,8 @@ public class OptionScreen extends AppCompatActivity {
     static public int getMineNumberSaved(Context context){
         SharedPreferences share = context.getSharedPreferences("mineShare",MODE_PRIVATE);
 
-        return share.getInt("mine number",0);
+        int default_mine = context.getResources().getInteger(R.integer.default_mine);
+        return share.getInt("mine number",default_mine);
 
     }
 

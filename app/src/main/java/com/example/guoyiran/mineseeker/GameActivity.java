@@ -1,14 +1,10 @@
 package com.example.guoyiran.mineseeker;
 
-import android.app.Activity;
-import android.app.FragmentManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.guoyiran.mineseeker.model.GameLogic;
