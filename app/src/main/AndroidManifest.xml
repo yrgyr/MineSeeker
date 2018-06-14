@@ -27,7 +27,7 @@
         <activity
             android:name=".OptionScreen"
             android:screenOrientation="landscape"
-            ></activity>
+            />
     </application>
 
 </manifest>

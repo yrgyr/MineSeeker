@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Path;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.RadioButton;
@@ -14,7 +15,7 @@ import android.widget.Toast;
 
 import com.example.guoyiran.mineseeker.model.OptionInfo;
 
-public class OptionScreen extends Activity {
+public class OptionScreen extends AppCompatActivity {
 
 
     private OptionInfo optionInfo;
@@ -28,7 +29,6 @@ public class OptionScreen extends Activity {
 //        android:theme="@style/AppTheme.PopUpWindow"
 
         optionInfo = OptionInfo.getOptionInfo();
-
 
         setRadioBtn();
     }
