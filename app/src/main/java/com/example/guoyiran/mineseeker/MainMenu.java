@@ -15,6 +15,7 @@ public class MainMenu extends AppCompatActivity {
 
         playGameBtnOnclick();
         optionBtnOnclick();
+        helpBtnOnclick();
     }
 
 
@@ -38,5 +39,17 @@ public class MainMenu extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void helpBtnOnclick(){
+
+        Button helpBtn = (Button) findViewById(R.id.helpBtn);
+        helpBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenu.this,HelpScreen.class);
+                startActivity(intent);
+            }
+        });
     }
 }

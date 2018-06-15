@@ -132,6 +132,7 @@ public class GameActivity extends AppCompatActivity {
                             Resources resource = getResources();
                             littleBtn.setBackground(new BitmapDrawable(resource, scaledBitmap));
 
+
                             found++;
                             winnerChecking();
                             updateTextView();
@@ -222,23 +223,21 @@ public class GameActivity extends AppCompatActivity {
     private void winnerChecking() {
 
         if(found == mineNum){
-
             android.support.v4.app.FragmentManager frag = getSupportFragmentManager();
             winningDialog popup = new winningDialog();
-//            popup.setCancelable(false);
+            popup.setCancelable(false);
             popup.show(frag,"hello world");
 
         }
     }
 
-
     private void updateTextView() {
         TextView mineInfo = (TextView) findViewById(R.id.mineInfo);
-        mineInfo.setText("Found "+ found+ " of " + mineNum + " mines");
+        mineInfo.setText(getString(R.string.num_mines_found,found,mineNum));
     }
     private void updateScanCountTV(){
 
         TextView scanNum = (TextView) findViewById(R.id.scanNum);
-        scanNum.setText("scaned "+ countScan + " time");
+        scanNum.setText(getString(R.string.scanned_num,countScan));
     }
 }
