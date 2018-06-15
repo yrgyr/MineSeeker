@@ -8,6 +8,10 @@ import android.widget.Button;
 
 public class MainMenu extends AppCompatActivity {
 
+    // this class has three buttons for jump into different screens
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,8 +21,6 @@ public class MainMenu extends AppCompatActivity {
         optionBtnOnclick();
         helpBtnOnclick();
     }
-
-
     private void playGameBtnOnclick() {
         Button playGameBtn = (Button) findViewById(R.id.playGameBtn);
         playGameBtn.setOnClickListener(new View.OnClickListener() {
@@ -40,7 +42,6 @@ public class MainMenu extends AppCompatActivity {
         });
 
     }
-
     private void helpBtnOnclick(){
 
         Button helpBtn = (Button) findViewById(R.id.helpBtn);

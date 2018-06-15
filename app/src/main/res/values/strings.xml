@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">MineSeeker</string>
     <string name="row_num_col_num">%1$d row by %2$d col</string>
-    <string name="num_mines">%1$d mines</string>
-    <string name="num_mines_found">Found %1$d of %2$d mines</string>
-    <string name="scanned_num">scanned %1$d times</string>
+    <string name="num_mines">%1$d planet</string>
+    <string name="num_mines_found">Found %1$d of %2$d planet</string>
+    <string name="scanned_num">scans %1$d times</string>
     <string name="play_game_btn_text">Play Game!</string>
     <string name="option_btn_text">Options</string>
     <string name="help_btn_text">Help</string>
@@ -12,9 +12,24 @@
     <string name="option_board_size">Board Size</string>
     <string name="option_mine_num"># of Mine</string>
     <string name ="author">Author: YIRAN GUO</string>
-    <string name="help_screen_text"> About: \n This is Assignment 3 \n Author : YIRAN GUO \n Course Link  :\t\t\t
-        <a href="http://www.cs.sfu.ca/CourseCentral/276/bfraser/index.html">CMPT276</a></string>
-    <string name="welcome_screen_title">Mine Seeker</string>
+    <string name="help_screen_text"> About: \n  Find those planets! Tapping the button to reveal the planet or to trigger a scan.
+        Try to find all planets hidden behind the button using least scans. The number on the button shows how many planets in its row and column.
+        You can select different size of game boards and planets in option screen.\n\n
+        Author : \n YIRAN GUO , A computing science student in Simon Fraser University \n\n
+        Others:\n
+        This is assignment 3 of CMPT276 in Simon Fraser University,
+        Course Link  :\t\t\t <a href="http://www.cs.sfu.ca/CourseCentral/276/bfraser/index.html">CMPT276</a>\n\n
+        Resources:\n
+        Thanks for authors of following resources \n
+        Planet Icons : <a href="http://www.lanrentuku.com/png/1657.html">Button Icon</a>\n
+        Welcome screen background : <a href="https://www.freepik.com/free-vector/cartoon-background-with-stars_1076870.htm">Background</a>\n
+        Button sound effect:<a href="http://www.aigei.com/">Sound Effect</a>\n
+    </string>
+    <string name="welcome_screen_title">Planet Seeker</string>
     <string name="welcome_screen_skip_btn">SKIP</string>
+    <string name="dialog_title">Congratulations</string>
+    <string name="dialog_btn_text">OK</string>
+    <string name="number_on_cell" >%1$d</string>
+    <string name ="update_number">%1$d</string>
 
 </resources>

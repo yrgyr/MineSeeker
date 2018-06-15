@@ -9,6 +9,12 @@ import android.widget.Button;
 
 public class WelcomeScreen extends AppCompatActivity {
 
+    /*==================================================================================
+     this is the welcome screen, the screen will advance to main menu after 4 second.
+     or you can skip it by pressing button.
+    ===================================================================================
+    */
+
     Handler TIME_OUT_HANDLER;
     Runnable myRun;
     @Override

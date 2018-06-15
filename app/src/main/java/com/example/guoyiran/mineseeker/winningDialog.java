@@ -11,6 +11,11 @@ import android.widget.Button;
 
 public class winningDialog extends AppCompatDialogFragment {
 
+    /* ===============================================================
+        this is the dialog window for winning message.
+        it will be pop up automatically when all planets are revealed.
+        ===============================================================
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
