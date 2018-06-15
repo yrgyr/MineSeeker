@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/lightorange"
     tools:context=".HelpScreen">
 
     <TextView
@@ -16,7 +17,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="casual"
         android:text="@string/help_screen_text"
-        android:textSize="30sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

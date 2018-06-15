@@ -17,6 +17,11 @@ import com.example.guoyiran.mineseeker.model.OptionInfo;
 
 public class OptionScreen extends AppCompatActivity {
 
+    /*
+    =================================================================
+    this is the option screen activity, include game size selection.
+    =================================================================
+     */
 
     private OptionInfo optionInfo;
 
@@ -25,30 +30,15 @@ public class OptionScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option_screen);
 
-//        setPopUpWindow();
-//        android:theme="@style/AppTheme.PopUpWindow"
-
         optionInfo = OptionInfo.getOptionInfo();
-
         setRadioBtn();
 
-
-        int savedRow = getRowNumberSaved(this);
-        int savedCol = getColNumberSaved(this);
-        int saveMine = getMineNumberSaved(this);
-        Toast.makeText(this,"saved "+savedRow + "row, " + savedCol + " col" + ",and "+ saveMine + " mines",Toast.LENGTH_SHORT)
-                .show();
+//        int savedRow = getRowNumberSaved(this);
+//        int savedCol = getColNumberSaved(this);
+//        int saveMine = getMineNumberSaved(this);
+////        Toast.makeText(this,"saved "+savedRow + "row, " + savedCol + " col" + ",and "+ saveMine + " mines",Toast.LENGTH_SHORT)
+////                .show();
     }
-
-
-    private void setPopUpWindow() {
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-        getWindow().setLayout((int)(width*0.6),(int) (height*0.8));
-    }
-    
     private void setRadioBtn() {
         RadioGroup boardSize = (RadioGroup) findViewById(R.id.boardSize);
         RadioGroup mineNum = (RadioGroup) findViewById(R.id.mineNum);
@@ -73,13 +63,9 @@ public class OptionScreen extends AppCompatActivity {
                 }
             });
             boardSize.addView(sizeBtn);
-
             if(row == getRowNumberSaved(this)&& col == getColNumberSaved(this)){
-//                optionInfo.setRowNumber(row);
-//                optionInfo.setColNumber(col);
                 sizeBtn.setChecked(true);
             }
-
         }
         for (int i = 0; i < mineArray.length; i++){
 
@@ -93,17 +79,12 @@ public class OptionScreen extends AppCompatActivity {
                     saveMine(optionInfo);
                 }
             });
-
             mineNum.addView(littleMine);
             if(mine == getMineNumberSaved(this)){
-//                optionInfo.setMineNumber(mine);
                 littleMine.setChecked(true);
-
             }
         }
-
     }
-
     // =========================Methods for saving values ==========================================
    private void saveSize(OptionInfo Info) {
 

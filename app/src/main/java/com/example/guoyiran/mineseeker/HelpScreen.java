@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 public class HelpScreen extends AppCompatActivity {
 
+    // this is the help screen activity, has text and hyperlink
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -6,13 +6,21 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class GameLogic {
 
-    private OptionInfo optionInfo = OptionInfo.getOptionInfo();
 
+
+    /* this is a class for game logic,
+        class can generate random planets position in the game board, stored in a 2D array
+        and generate numbers on each cell, also store in a 2D array
+    */
+
+
+
+
+    private OptionInfo optionInfo = OptionInfo.getOptionInfo();
     private int rowNum;
     private int colNum;
     private int mineNum;
 
-    //why i can not initialize it globally
     private int[][] printed;
     private int[][] cellNumList;
 
@@ -20,11 +28,9 @@ public class GameLogic {
     public int[][] getCellNum() {
         return cellNumList;
     }
-
     public int[][] getPrinted() {
         return printed;
     }
-
     public GameLogic(int rows,int cols,int mines){
 
         rowNum = rows;
@@ -72,13 +78,5 @@ public class GameLogic {
         if(printed[currentRow][currentCol] == 1){
             countMine--; }
         return countMine;
-    }
-
-
-    private void mineFound(Button btn){
-
-
-
-
     }
 }
